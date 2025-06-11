@@ -17,17 +17,15 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 420px;
-    width: 95vw;
-    margin-top: 2rem;
 }
 
 h1 {
     color: #fff;
     font-size: 2.3rem;
     font-family: 'Segoe UI', Arial, sans-serif;
-    margin-bottom: 1.2rem;
     letter-spacing: 2px;
+    margin-top: 0;
+    margin-bottom: 1.2rem;
 }
 
 canvas {
@@ -37,10 +35,96 @@ canvas {
     box-shadow: 0 4px 24px #0f05;
     margin-bottom: 1.5rem;
     transition: box-shadow 0.2s;
-    display: none;;
+    display: none;
 }
 canvas:focus {
     outline: 2px solid #0ff;
+}
+
+#controlsDesktop {
+    width: 100%;
+    margin-bottom: 0.5rem;
+
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#controlsDesktop .title {
+    color: white;
+    margin: 0;
+}
+#controlsDesktop .item {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+#controlsDesktop .item .key {
+    background-color: #fffec6;
+    border-radius: 0.2rem;
+    color: black;
+    font-weight: bold;
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#controlsDesktop .item .space {
+    width: 150px;
+}
+#controlsDesktop .item p {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+#controlsMobile {
+    width: 100%;
+    margin-bottom: 0.5rem;
+
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+#controlsMobile .title {
+    color: white;
+    font-size: 4rem;
+    margin: 0;
+}
+#controlsMobile .items {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+#controlsMobile .items .buttonGame {
+    background-color: #fffec6;
+    border-radius: 1rem;
+    color: black;
+    font-size: 5rem;
+    font-weight: bold;
+    width: 150px;
+    height: 150px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    touch-action: manipulation; /* Evita zoom en móvil */
+}
+#controlsMobile .items #btnMRestart {
+    width: auto;
+    padding: 0 2rem;
+    
+    display: none;
 }
 
 .back-link {
@@ -83,24 +167,18 @@ canvas:focus {
     cursor: pointer;
 }
 
-@media (max-width: 600px) {
-    .container {
-        padding: 1.2rem 0.5rem 1.5rem 0.5rem;
-        max-width: 98vw;
-    }
+@media (max-width: 1024px) {
     h1 {
-        font-size: 1.5rem;
+        font-size: 5rem;
     }
-    canvas {
-        width: 95vw !important;
-        height: 95vw !important;
-        max-width: 98vw;
-        max-height: 98vw;
-    }
+
     .back-link {
-        font-size: 1rem;
+        font-size: 3.5rem;
         top: 0.7rem;
         left: 0.7rem;
         padding: 0.4rem 0.8rem;
+    }
+    .button {
+        font-size: 3.5rem;
     }
 }

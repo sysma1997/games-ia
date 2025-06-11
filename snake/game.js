@@ -1,3 +1,5 @@
+import Subject from "../shared/domain/Subject.js";
+
 export class Snake {
     #canvas;
     #ctx;
@@ -11,6 +13,7 @@ export class Snake {
     #running = true;
     #changeDirection = false;
     #foodPulse = 0;
+    #gameOver = false;
 
     constructor(canvas) {
         this.#canvas = canvas;
@@ -73,8 +76,10 @@ export class Snake {
 
         // Puntaje
         this.#ctx.fillStyle = '#fff';
-        this.#ctx.font = '18px Arial';
-        this.#ctx.fillText('Score: ' + this.#score, 10, 20);
+        const sizeScoreText = Math.round(this.#canvas.width * 0.06);
+        this.#ctx.font = `${sizeScoreText}px Arial`;
+        this.#ctx.textAlign = 'left';
+        this.#ctx.fillText('Score: ' + this.#score, 10, sizeScoreText + 5);
 
         // Overlay de game over
         if (!this.#running) {
@@ -84,13 +89,20 @@ export class Snake {
             this.#ctx.fillRect(0, 0, this.#canvas.width, this.#canvas.height);
             this.#ctx.globalAlpha = 1;
             this.#ctx.fillStyle = '#fff';
-            this.#ctx.font = '32px Arial';
+            // Texto principal (Finish!)
+            const finishFont = Math.round(this.#canvas.width * 0.12);
+            this.#ctx.font = `${finishFont}px Arial`;
             this.#ctx.textAlign = 'center';
-            this.#ctx.fillText('Finish!', this.#canvas.width / 2, 160);
-            this.#ctx.font = '20px Arial';
-            this.#ctx.fillText('Final score: ' + this.#score, this.#canvas.width / 2, 200);
-            this.#ctx.fillText("Press 'Space' to reset game", this.#canvas.width / 2, 230);
-            this.#ctx.restore();
+            this.#ctx.fillText('Finish!', this.#canvas.width / 2, this.#canvas.height / 2 - finishFont * 0.5);
+            // Texto de puntaje final
+            const finalScoreFont = Math.round(this.#canvas.width * 0.07);
+            this.#ctx.font = `${finalScoreFont}px Arial`;
+            this.#ctx.fillText('Final score: ' + this.#score, this.#canvas.width / 2, this.#canvas.height / 2 + finalScoreFont * 0.5);
+
+            if (!this.#gameOver) {
+                this.#gameOver = true;
+                Subject.notify("gameOver", this.#score);
+            }
         }
     }
 
@@ -135,16 +147,22 @@ export class Snake {
     }
 
     #reset() {
-        this.#snake = [{ x: 160, y: 200 }];
+        // Calcula el centro alineado al grid
+        const startX = Math.floor((this.#canvas.width / 2) / this.#grid) * this.#grid;
+        const startY = Math.floor((this.#canvas.height / 2) / this.#grid) * this.#grid;
+        this.#snake = [{ x: startX, y: startY }];
         this.#dx = this.#grid;
         this.#dy = 0;
         this.#food = this.#getRandomPosition();
         this.#score = 0;
         this.#running = true;
         this.#changeDirection = false;
+        this.#gameOver = false;
     }
 
     start() {
+        this.#grid = Math.min(this.#canvas.width, this.#canvas.height) / 20;
+        this.#reset();
         this.#draw();
         this.#gameLoop();
     }
@@ -175,5 +193,39 @@ export class Snake {
             this.#reset();
             this.#gameLoop();
         }
+    }
+    moveUp() {
+        if (this.#dy === 0 && !this.#changeDirection) {
+            this.#dx = 0;
+            this.#dy = -this.#grid;
+            this.#changeDirection = true;
+        }
+    }
+    moveDown() {
+        if (this.#dy === 0 && !this.#changeDirection) {
+            this.#dx = 0;
+            this.#dy = this.#grid;
+            this.#changeDirection = true;
+        }
+    }
+    moveLeft() {
+        if (this.#dx === 0 && !this.#changeDirection) {
+            this.#dx = -this.#grid;
+            this.#dy = 0;
+            this.#changeDirection = true;
+        }
+    }
+    moveRight() {
+        if (this.#dx === 0 && !this.#changeDirection) {
+            this.#dx = this.#grid;
+            this.#dy = 0;
+            this.#changeDirection = true;
+        }
+    }
+    restart() {
+        if (this.#running) return;
+
+        this.#reset();
+        this.#gameLoop();
     }
 }

@@ -5,13 +5,51 @@
     <meta charset="UTF-8">
     <title>Snake</title>
     <link rel="stylesheet" href="./index.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🐍</text></svg>">
 </head>
 
 <body>
     <a class="back-link" href="/index.html">Back</a>
     <div class="container">
         <h1>Snake</h1>
-        <canvas id="game" width="400" height="400"></canvas>
+        <canvas id="game"></canvas>
+        <div id="controlsDesktop">
+            <h3 class="title">Controls</h3>
+            <div class="item">
+                <span class="key">↑</span>
+                <p>Move up</p>
+            </div>
+            <div class="item">
+                <span class="key">↓</span>
+                <p>Move down</p>
+            </div>
+            <div class="item">
+                <span class="key">←</span>
+                <p>Move left</p>
+            </div>
+            <div class="item">
+                <span class="key">→</span>
+                <p>Move right</p>
+            </div>
+            <div class="item">
+                <span class="key space"></span>
+                <p>Restart the game when you lose</p>
+            </div>
+        </div>
+        <div id="controlsMobile">
+            <h3 class="title">Controls</h3>
+            <div class="items">
+                <button id="btnMUp" class="buttonGame">↑</button>
+            </div>
+            <div class="items">
+                <button id="btnMLeft" class="buttonGame">←</button>
+                <button id="btnMDown" class="buttonGame">↓</button>
+                <button id="btnMRight" class="buttonGame">→</button>
+            </div>
+            <div class="items">
+                <button id="btnMRestart" class="buttonGame restart">Restart</button>
+            </div>
+        </div>
         <button id="startGame" class="button">Start</button>
     </div>
     <script type="module" src="./index.js"></script>
