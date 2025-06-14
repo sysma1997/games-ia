@@ -9,16 +9,6 @@ body {
     font-family: 'Segoe UI', Arial, sans-serif;
 }
 
-.container {
-    background: rgba(34, 40, 58, 0.95);
-    border-radius: 1.5rem;
-    box-shadow: 0 8px 32px #000a;
-    padding: 2.5rem 2rem 2rem 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 h1 {
     color: #fff;
     font-size: 2.3rem;
@@ -125,46 +115,6 @@ canvas:focus {
     padding: 0 2rem;
     
     display: none;
-}
-
-.back-link {
-    background: linear-gradient(90deg, #0ff 40%, #0f0 100%);
-    border-radius: 0.7rem;
-    color: #181c24;
-    font-size: 1.2rem;
-    font-weight: bold;
-    text-decoration: none;
-    padding: 0.5rem 1.2rem;
-    position: absolute;
-    top: 1.5rem;
-    left: 1.5rem;
-    box-shadow: 0 2px 8px #0004;
-    transition: background 0.2s, color 0.2s, transform 0.15s;
-    z-index: 10;
-}
-.back-link:hover {
-    background: linear-gradient(90deg, #0f0 40%, #0ff 100%);
-    color: #181c24;
-    transform: scale(1.07);
-}
-
-.button {
-    background: linear-gradient(90deg, #0ff 40%, #0f0 100%);
-    border: none;
-    border-radius: 0.7rem;
-    color: #181c24;
-    font-size: 1.2rem;
-    font-weight: bold;
-    text-decoration: none;
-    padding: 0.5rem 1.2rem;
-    box-shadow: 0 2px 8px #0004;
-    transition: background 0.2s, color 0.2s, transform 0.15s;
-}
-.button:hover {
-    background: linear-gradient(90deg, #0f0 40%, #0ff 100%);
-    color: #181c24;
-    transform: scale(1.07);
-    cursor: pointer;
 }
 
 @media (max-width: 1024px) {

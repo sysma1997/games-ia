@@ -4,12 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Snake</title>
-    <link rel="stylesheet" href="./index.css">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🐍</text></svg>">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 115 100'><text y='0.9em' font-size='90'>🐍</text></svg>">
+    <link rel="stylesheet" href="/shared/domain/global.css">
+    <link rel="stylesheet" href="/shared/domain/game.css">
+    <link rel="stylesheet" href="/snake/index.css">
 </head>
 
 <body>
-    <a class="back-link" href="/index.html">Back</a>
+    <a class="button back-link" href="/">Back</a>
     <div class="container">
         <h1>Snake</h1>
         <canvas id="game"></canvas>
@@ -50,9 +52,9 @@
                 <button id="btnMRestart" class="buttonGame restart">Restart</button>
             </div>
         </div>
-        <button id="startGame" class="button">Start</button>
+        <button id="btnStartGame" class="button">Start</button>
     </div>
-    <script type="module" src="./index.js"></script>
+    <script type="module" src="/snake/index.js"></script>
 </body>
 
 </html>

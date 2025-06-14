@@ -1,11 +1,10 @@
-import { Snake } from "./game.js";
-import Subject from "../shared/domain/Subject.js";
+import { Snake } from "/snake/game.js";
+import Subject from "/shared/domain/Subject.js";
 
 const canvas = document.getElementById('game');
-const snake = new Snake(canvas);
 const controlsDesktop = document.getElementById("controlsDesktop");
 const controlsMobile = document.getElementById("controlsMobile");
-const btnStartGame = document.getElementById("startGame");
+const startGame = document.getElementById("btnStartGame");
 
 const mUp = document.getElementById("btnMUp");
 const mLeft = document.getElementById("btnMLeft");
@@ -13,6 +12,7 @@ const mRight = document.getElementById("btnMRight");
 const mDown = document.getElementById("btnMDown");
 const mRestart = document.getElementById("btnMRestart");
 
+const snake = new Snake(canvas);
 // Detecta si es móvil o escritorio y muestra los controles adecuados
 function isMobile() {
     return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
@@ -26,7 +26,7 @@ Subject.attach("gameOver", (score) => {
     mRestart.style.display = "block";
 });
 
-btnStartGame.onclick = () => {
+startGame.onclick = () => {
     canvas.style.display = "block";
     if (isMobile()) {
         canvas.width = 800;
@@ -42,8 +42,8 @@ btnStartGame.onclick = () => {
     }
     
     snake.start();
-    btnStartGame.style.display = "none";
-}
+    startGame.style.display = "none";
+};
 
 mUp.onclick = () => snake.moveUp();
 mDown.onclick = () => snake.moveDown();
@@ -52,4 +52,4 @@ mRight.onclick = () => snake.moveRight();
 mRestart.onclick = () => {
     snake.restart();
     mRestart.style.display = "none";
-}
+};
